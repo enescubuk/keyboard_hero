@@ -17,45 +17,70 @@ public class noteTiming : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        detectObject = other.gameObject;
-        canPress = true;
-        detectObjectName(other.gameObject);
-    }
-
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        canPress = false;
-        if (detectObject.transform.childCount == 1)
+        if (other.transform.parent != null)
         {
-            Debug.Log(3131313);
-            holdingNote(true,false);
+            detectObject = other.transform.parent.gameObject;
         }
+        else
+        {
+            detectObject = other.gameObject;
+        }
+        canPress = true;
+        detectObjectName(detectObject);
     }
-
     void Update()
     {
         if (canPress)
         {
             if (Input.GetKeyDown(keysSO.keys[keyArrayNumber]))
             {
-                correctTimePress.corretPress(this.gameObject);
+                
                 if (detectObject.name.Contains("hold"))
                 {
-                    detectObject.transform.position = transform.position;
+                    holdingIcon(detectObject);
                     holdingNote(false,true);
                 }
             }
             if (Input.GetKeyUp(keysSO.keys[keyArrayNumber]))
             {
+                
                 holdingNote(true,false);
+                correctTimePress.correctPressNormalNote(detectObject);
+                
+                if (detectObject.name.Contains("hold"))
+                {
+                    detectObject.transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
+                }
+                else
+                {
+                    detectObject.GetComponent<Collider2D>().enabled = false;
+                }
             }
         }
     }
+
+    private void holdingIcon(GameObject detectObject)
+    {
+        Vector3 firstPosChild = detectObject.transform.GetChild(0).position;
+        detectObject.transform.position = transform.position;
+        detectObject.transform.GetChild(0).position = firstPosChild;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        canPress = false;
+        if (detectObject.transform.childCount >= 1)
+        {
+            holdingNote(true,false);
+            correctTimePress.correctPressHolderNote(other.transform.parent.gameObject);
+        }
+    }
+
+    
     private void holdingNote(bool parentBool,bool childBool)
     {
         detectObject.GetComponent<noteMovement>().enabled = parentBool;
-        if (detectObject.transform.childCount == 1)
+        if (detectObject.transform.childCount >= 1)
         {
             detectObject.transform.GetChild(0).GetComponent<noteMovement>().enabled = childBool;
         }
@@ -64,38 +89,40 @@ public class noteTiming : MonoBehaviour
 
     private void detectObjectName(GameObject other)
     {
-        if (other.gameObject.name.Contains("LeftArrow"))
-        {
-            keyArrayNumber = 4;
-        }
-        else if (other.gameObject.name.Contains("1"))
+        
+        if (other.gameObject.name.Contains("1"))
         {
             keyArrayNumber = 0;
-        }
-        else if (other.gameObject.name.Contains("UpArrow"))
-        {
-            keyArrayNumber = 5;
         }
         else if (other.gameObject.name.Contains("2"))
         {
             keyArrayNumber = 1;
         }
-        else if (other.gameObject.name.Contains("DownArrow"))
-        {
-            keyArrayNumber = 6;
-        }
         else if (other.gameObject.name.Contains("3"))
         {
             keyArrayNumber = 2;
-        }
-        else if (other.gameObject.name.Contains("RightArrow"))
-        {
-            keyArrayNumber = 7;
         }
         else if (other.gameObject.name.Contains("4"))
         {
             keyArrayNumber = 3;
         }
+        else if (other.gameObject.name.Contains("LeftArrow"))
+        {
+            keyArrayNumber = 4;
+        }
+        else if (other.gameObject.name.Contains("UpArrow"))
+        {
+            keyArrayNumber = 5;
+        }
         
+        else if (other.gameObject.name.Contains("DownArrow"))
+        {
+            keyArrayNumber = 6;
+        }
+        
+        else if (other.gameObject.name.Contains("RightArrow"))
+        {
+            keyArrayNumber = 7;
+        }
     }
 }

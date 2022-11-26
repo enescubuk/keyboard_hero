@@ -5,8 +5,14 @@ using UnityEngine;
 public class correctTimePress : MonoBehaviour
 {
 
-    public void corretPress(GameObject button)
+    public void correctPressNormalNote(GameObject button)
     {
-        //Debug.Log(button.name + " objesine animasyon uygula");
+        Debug.Log(button.name + " objesine animasyon uygula");
+        //Destroy(button);
+    }
+    public void correctPressHolderNote(GameObject button)
+    {
+        Debug.Log(button.name + " objesine animasyon uygula");
+        //Destroy(button);
     }
 }
