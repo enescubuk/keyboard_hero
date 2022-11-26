@@ -5,7 +5,6 @@ using UnityEngine;
 public class noteMovement : MonoBehaviour
 {
     private GameManager gameManager;
-    public float speed;
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -13,7 +12,7 @@ public class noteMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(new Vector3(-gameManager.bpm * Time.deltaTime * speed,0,0));
+        transform.Translate(new Vector3(-gameManager.bpm * Time.deltaTime,0,0));
     }
 
 }

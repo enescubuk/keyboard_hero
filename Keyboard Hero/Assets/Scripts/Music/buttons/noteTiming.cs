@@ -32,6 +32,7 @@ public class noteTiming : MonoBehaviour
     {
         if (canPress)
         {
+            Debug.Log(keysSO.keys[keyArrayNumber]);
             if (Input.GetKeyDown(keysSO.keys[keyArrayNumber]))
             {
                 
@@ -90,19 +91,19 @@ public class noteTiming : MonoBehaviour
     private void detectObjectName(GameObject other)
     {
         
-        if (other.gameObject.name.Contains("1"))
+        if (other.gameObject.name.Contains("Alpha1"))
         {
             keyArrayNumber = 0;
         }
-        else if (other.gameObject.name.Contains("2"))
+        else if (other.gameObject.name.Contains("Alpha2"))
         {
             keyArrayNumber = 1;
         }
-        else if (other.gameObject.name.Contains("3"))
+        else if (other.gameObject.name.Contains("Alpha3"))
         {
             keyArrayNumber = 2;
         }
-        else if (other.gameObject.name.Contains("4"))
+        else if (other.gameObject.name.Contains("Alpha4"))
         {
             keyArrayNumber = 3;
         }
