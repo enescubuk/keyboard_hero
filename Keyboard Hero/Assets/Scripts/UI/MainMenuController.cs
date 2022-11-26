@@ -19,6 +19,7 @@ public class MainMenuController : MonoBehaviour
     public RectTransform howToPlay;
     public RectTransform options;
     public RectTransform credits;
+    public RectTransform quit;
     
     [Header("CANVAS")]
     public GameObject MainMenuCanvas;
@@ -41,6 +42,7 @@ public class MainMenuController : MonoBehaviour
         howToPlay.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration3).From().SetEase(Ease.OutExpo);
         options.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration2).From().SetEase(Ease.OutExpo);
         credits.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration1).From().SetEase(Ease.OutExpo);
+        quit.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration1).From().SetEase(Ease.OutExpo);
     }
     public void ButtonClose()
     {
@@ -52,6 +54,7 @@ public class MainMenuController : MonoBehaviour
         howToPlay.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration3-0.5f).SetEase(Ease.OutExpo);
         options.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration2-0.5f).SetEase(Ease.OutExpo);
         credits.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration1-0.5f).SetEase(Ease.OutExpo);
+        quit.DOAnchorPosX(1400f, buttonRevealDuration.revealDuration1-0.5f).SetEase(Ease.OutExpo);
     }
 
     public void BackClose()
@@ -64,6 +67,8 @@ public class MainMenuController : MonoBehaviour
         howToPlay.DOAnchorPosX(600f, buttonRevealDuration.revealDuration3).SetEase(Ease.OutExpo);
         options.DOAnchorPosX(600f, buttonRevealDuration.revealDuration2).SetEase(Ease.OutExpo);
         credits.DOAnchorPosX(600f, buttonRevealDuration.revealDuration1).SetEase(Ease.OutExpo);
+        quit.DOAnchorPosX(600f, buttonRevealDuration.revealDuration1).SetEase(Ease.OutExpo);
+
     }
 
     public void GuitarSelectButton()
@@ -87,7 +92,10 @@ public class MainMenuController : MonoBehaviour
         StartCoroutine(CreditsIE());
     }
 
-    
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
     public void BackButton()
     {
         OptionsCanvas.SetActive(false);
