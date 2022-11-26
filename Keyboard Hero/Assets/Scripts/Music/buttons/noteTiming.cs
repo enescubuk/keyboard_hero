@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class noteTiming : MonoBehaviour
 {
-    [SerializeField] musicControllerSO musicControllerSO;
     [SerializeField] KeysSO keysSO;
     private correctTimePress correctTimePress;
     bool canPress;
-    string whichKey;
     int keyArrayNumber;
+    private GameObject detectObject;
     
     void Awake()
     {
@@ -18,17 +17,20 @@ public class noteTiming : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        detectObject = other.gameObject;
         canPress = true;
-        detectObjectName(other);
-        Debug.Log("a");
+        detectObjectName(other.gameObject);
     }
 
 
     void OnTriggerExit2D(Collider2D other)
     {
         canPress = false;
-
-        Debug.Log("b");
+        if (detectObject.transform.childCount == 1)
+        {
+            Debug.Log(3131313);
+            holdingNote(true,false);
+        }
     }
 
     void Update()
@@ -38,12 +40,29 @@ public class noteTiming : MonoBehaviour
             if (Input.GetKeyDown(keysSO.keys[keyArrayNumber]))
             {
                 correctTimePress.corretPress(this.gameObject);
+                if (detectObject.name.Contains("hold"))
+                {
+                    detectObject.transform.position = transform.position;
+                    holdingNote(false,true);
+                }
             }
+            if (Input.GetKeyUp(keysSO.keys[keyArrayNumber]))
+            {
+                holdingNote(true,false);
+            }
+        }
+    }
+    private void holdingNote(bool parentBool,bool childBool)
+    {
+        detectObject.GetComponent<noteMovement>().enabled = parentBool;
+        if (detectObject.transform.childCount == 1)
+        {
+            detectObject.transform.GetChild(0).GetComponent<noteMovement>().enabled = childBool;
         }
     }
 
 
-    private void detectObjectName(Collider2D other)
+    private void detectObjectName(GameObject other)
     {
         if (other.gameObject.name.Contains("LeftArrow"))
         {
