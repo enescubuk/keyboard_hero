@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -20,7 +22,7 @@ public class MainMenuController : MonoBehaviour
     public RectTransform options;
     public RectTransform credits;
     public RectTransform quit;
-    
+
     [Header("CANVAS")]
     public GameObject MainMenuCanvas;
     public GameObject OptionsCanvas;
@@ -28,6 +30,12 @@ public class MainMenuController : MonoBehaviour
     public GameObject GuitarSelectCanvas;
     public GameObject AchievementsCanvas;
     public GameObject HotToPlayCanvas;
+    public GameObject SongSelectCanvas;
+    
+    [Header("SOUND SELECT")]
+    public RectTransform SoundScreenPlayButton;
+    public GameObject Sound1Text;
+    public GameObject ButtonChild;
     void Start()
     {
         ButtonStart();
@@ -71,6 +79,16 @@ public class MainMenuController : MonoBehaviour
 
     }
 
+    
+    public void PlayButton()
+    {
+        StartCoroutine(SongSelectIE());
+    }
+
+    public void Sound1()
+    {
+        StartCoroutine(Sound1IE());
+    }
     public void GuitarSelectButton()
     {
         StartCoroutine(GuitarSelectIE());
@@ -91,7 +109,7 @@ public class MainMenuController : MonoBehaviour
     {
         StartCoroutine(CreditsIE());
     }
-
+    
     public void QuitButton()
     {
         Application.Quit();
@@ -107,6 +125,20 @@ public class MainMenuController : MonoBehaviour
         BackClose();
     }
 
+    IEnumerator Sound1IE()
+    {
+        Sound1Text.SetActive(true);
+        ButtonChild.SetActive(true);
+        SoundScreenPlayButton.DOAnchorPosY(-34f, 1f).SetEase(Ease.OutExpo);
+        yield return new WaitForSeconds(2f);
+    }
+    IEnumerator SongSelectIE()
+    {
+        ButtonClose();
+        yield return new WaitForSeconds(0.7f);
+        MainMenuCanvas.SetActive(false);
+        SongSelectCanvas.SetActive(true);
+    }
     IEnumerator GuitarSelectIE()
     {
         ButtonClose();
