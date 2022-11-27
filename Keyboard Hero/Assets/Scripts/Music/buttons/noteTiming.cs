@@ -33,7 +33,6 @@ public class noteTiming : MonoBehaviour
     {
         if (canPress)
         {
-            Debug.Log(keysSO.keys[keyArrayNumber]);
             if (Input.GetKeyDown(keysSO.keys[keyArrayNumber]))
             {
                 
