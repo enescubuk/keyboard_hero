@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class noteMovement : MonoBehaviour
+public class lineMovement : MonoBehaviour
 {
-    private GameManager gameManager;
-
-    void Awake()
+    GameManager gameManager => GameObject.Find("GameManager").GetComponent<GameManager>();
+    void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
-
-
-    void Update()
-    {
-        transform.Translate(new Vector3(-gameManager.firstBpm * Time.deltaTime,0,0));
         
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(new Vector3(-gameManager.firstBpm * Time.deltaTime,0,0));
+    }
 }
