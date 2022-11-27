@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating("createLine",firstBpm/4,bpm*4);
+        InvokeRepeating("createLine",0,bpm*4);
         InvokeRepeating("createKey",0,bpm);
         
     }
