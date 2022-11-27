@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class noteTiming : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class noteTiming : MonoBehaviour
                 
                 if (detectObject.name.Contains("hold"))
                 {
+                    detectObject.transform.DOShakePosition(1f, 0.1f,vibrato:30,fadeOut:false);
                     holdingIcon(detectObject);
                     holdingNote(false,true);
                 }

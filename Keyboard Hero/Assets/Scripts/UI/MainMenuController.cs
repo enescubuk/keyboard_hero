@@ -121,7 +121,10 @@ public class MainMenuController : MonoBehaviour
         GuitarSelectCanvas.SetActive(false);
         AchievementsCanvas.SetActive(false);
         HotToPlayCanvas.SetActive(false);
+        SongSelectCanvas.SetActive(false);
         MainMenuCanvas.SetActive(true);
+        Sound1Text.SetActive(false);
+        ButtonChild.SetActive(false);
         BackClose();
     }
 
