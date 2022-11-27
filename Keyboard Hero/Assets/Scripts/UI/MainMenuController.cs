@@ -151,10 +151,9 @@ public class MainMenuController : MonoBehaviour
     }
     IEnumerator AchievementsIE()
     {
-        ButtonClose();
-        yield return new WaitForSeconds(0.7f);
-        MainMenuCanvas.SetActive(false);
         AchievementsCanvas.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        AchievementsCanvas.SetActive(false);
     }
     IEnumerator HowToPlayIE()
     {
