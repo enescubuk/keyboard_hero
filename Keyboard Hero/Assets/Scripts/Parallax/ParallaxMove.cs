@@ -10,11 +10,9 @@ public class ParallaxMove : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-
-
     void Update()
     {
-        transform.Translate(new Vector3(gameManager.firstBpm * Time.deltaTime,0,0));
+        transform.Translate(new Vector3(-gameManager.firstBpm * Time.deltaTime,0,0));
         
     }
 }
