@@ -59,6 +59,10 @@ public class noteTiming : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyUp(keysSO.keys[keyArrayNumber]))
+            {
+                correctTimePress.missPressNormal();
+            }
     }
 
     private void holdingIcon(GameObject detectObject)

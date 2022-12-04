@@ -40,6 +40,10 @@ public class MainMenuController : MonoBehaviour
     {
         ButtonStart();
     }
+    public void play()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
     public void ButtonStart()
     {
         //Left Button

@@ -11,14 +11,20 @@ public class AchievementsControl : MonoBehaviour
     public RectTransform Guitar3;
     public RectTransform Guitar4;
 
-    private int count = 0;
+
+    public int count = 0;
     private int PositionData;
+    static public GameObject[] guitars;
 
     
     void Update()
     {
         GuitarPositionData();
         CountControl();
+    }
+    public void asd()
+    {
+        GameManager.countsss = count; 
     }
     public void RightButton()
     {

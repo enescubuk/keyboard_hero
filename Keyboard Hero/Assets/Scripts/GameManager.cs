@@ -5,9 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float bpm,firstBpm;
+    public static int countsss = 0;
     public GameObject line;
     [SerializeField] keyNotesSO keyNotesSO;
     public int counter = 0;
+    public GameObject[] guitars;
+    public Vector2 location;
     
     void Awake()
     {
@@ -20,6 +23,11 @@ public class GameManager : MonoBehaviour
     {
         InvokeRepeating("createLine",0,bpm*4);
         InvokeRepeating("createKey",0,bpm);
+        Instantiate(guitars[countsss],location,Quaternion.identity);
+    }
+    void Update()
+    {
+        Debug.Log(countsss);
         
     }
     void createLine()
